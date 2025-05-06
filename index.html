@@ -1,269 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Zuci System Email Generator</title>
-	<style>
-		* {
-			box-sizing: border-box;
-			margin: 0;
-			padding: 0;
-		}
-
-		@media screen and (max-width: 900px) {
-			.stack-mobile {
-				display: block;
-				width: 100% !important;
-				text-align: left;
-				margin-bottom: 8px;
-			}
-
-			.hide-mobile {
-				display: none;
-			}
-		}
-
-		body {
-			font-family: Arial, sans-serif;
-			padding: 20px;
-			background-color: #ffffff;
-		}
-
-		.wrapper {
-			display: flex;
-			flex-direction: column;
-			width: 100%;
-			max-width: 1400px;
-			height: auto;
-			align-items: center;
-			justify-content: center;
-			transition: all 0.5s ease;
-		}
-
-		.input-wrapper {
-			width: 100%;
-			max-width: 400px;
-			padding: 30px;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			transition: all 0.5s ease;
-		}
-
-		.signature-wrapper {
-			display: none;
-			width: 100%;
-			padding: 20px;
-			margin-top: 30px;
-			transition: all 0.5s ease;
-		}
-
-		h2 {
-			margin-bottom: 20px;
-			color: #333;
-			text-align: center;
-		}
-
-		input {
-			display: block;
-			margin-bottom: 15px;
-			padding: 12px 15px;
-			width: 100%;
-			font-size: 16px;
-			border: 1px solid #ccc;
-			border-radius: 8px;
-			outline: none;
-			background: #fff;
-			transition: border-color 0.3s, box-shadow 0.3s;
-			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-		}
-
-		input:focus {
-			border-color: #0077ff;
-			box-shadow: 0 0 0 4px rgba(0, 119, 255, 0.1);
-		}
-
-		button {
-			padding: 12px 20px;
-			font-size: 16px;
-			font-weight: 600;
-			color: white;
-			background-color: #0077ff;
-			border: none;
-			border-radius: 8px;
-			cursor: pointer;
-			transition: background-color 0.3s, transform 0.2s;
-			margin-top: 15px;
-			width: 100%;
-		}
-
-		button:hover {
-			background-color: #005dc1;
-			transform: translateY(-2px);
-		}
-
-		.signature-container {
-			width: 100%;
-		}
-
-		.signature-previewreview {
-			border: 1px solid #fafafa;
-		}
-
-
-		/* After generation - Desktop View */
-		.generated {
-			flex-direction: row;
-		}
-
-		.generated .input-wrapper {
-			width: 40%;
-			max-width: none;
-			height: 100%;
-			align-items: flex-start;
-			justify-content: flex-start;
-			border-right: 1px solid #ddd;
-		}
-
-		.generated .signature-wrapper {
-			display: flex;
-			width: 60%;
-			height: 100%;
-			align-items: center;
-			justify-content: center;
-			margin-top: 0;
-		}
-
-		/* Responsive for Mobile and Tablet */
-		@media (max-width: 768px) {
-			.generated {
-				flex-direction: column;
-			}
-
-			.generated .input-wrapper,
-			.generated .signature-wrapper {
-				width: 100%;
-				border: none;
-				height: auto;
-			}
-
-			.generated .signature-wrapper {
-				margin-top: 30px;
-			}
-		}
-	</style>
+  <meta charset="UTF-8">
+  <title>Zuci System Email Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #ffffff;
+    }
+    input {
+      display: block;
+      margin-bottom: 10px;
+      padding: 8px;
+      width: 300px;
+    }
+    button {
+      padding: 10px 15px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .signature-container {
+      margin-top: 30px;
+    }
+    .signature-previewreview {border:1px solid #fafafa;}
+    
+  </style>
 </head>
-
 <body>
-	<div class="wrapper" id="wrapper">
-		<div class="input-wrapper">
-			<h2>Email Signature Generator</h2>
 
-			<input type="text" id="name" placeholder="Name" />
-			<input type="email" id="email" placeholder="Email" />
-			<input type="text" id="designation" placeholder="Designation" />
-			<input type="text" id="department" placeholder="Department" />
-			<input type="tel" id="mobile" placeholder="Mobile Number" />
+  <h2>Email Signature Generator</h2>
 
-			<button onclick="generateSignature()">Generate Signature</button>
-		</div>
+  <input type="text" id="name" placeholder="Name">
+  <input type="email" id="email" placeholder="Email">
+  <input type="text" id="designation" placeholder="Designation">
+  <input type="text" id="department" placeholder="Department">
+  <input type="tel" id="mobile" placeholder="Mobile Number">
+  
+  <button onclick="generateSignature()">Generate Signature</button>
+  <!-- <button onclick="copySignature()">Copy HTML</button> -->
 
-		<div class="signature-wrapper">
-			<div class="signature-container">
-				<div id="signaturePreview" class="signature-preview"></div>
-			</div>
-		</div>
-	</div>
+  <div class="signature-container">
+    <div id="signaturePreview" class="signature-preview"></div>
+  </div>
 
-	<script>
-		function generateSignature() {
-			const name = document.getElementById("name").value.trim();
-			const email = document.getElementById("email").value.trim();
-			const designation = document.getElementById("designation").value.trim();
-			const department = document.getElementById("department").value.trim();
-			const mobile = document.getElementById("mobile").value.trim();
+  <script>
+    function generateSignature() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const designation = document.getElementById("designation").value;
+      const department = document.getElementById("department").value;
+      const mobile = document.getElementById("mobile").value;
 
-			if (!name || !email || !designation || !department || !mobile) {
-				alert("Please fill out all fields!");
-				return;
-			}
+      const signatureHTML = `
+	<table cellpadding="0" cellspacing="0"  class="signature-preview" id="signaturePreview"  max-width="480px" min-width:375px; height="126px" style="font-family: 'Geist', arial; border:1px solid #fafafa; background-color:#ffffff;">
 
-			const signatureHTML = `
-			<table border="0" cellpadding="0" cellspacing="0" style="border:1px solid #fafafa; background-color:#ffffff;">
-				<tr>
-					<td rowspan="6" style="background: #fafafa;">
-						<a href="https://www.zucisystems.com/" target="_blank">
-							<img src="./image/logo.png" width="180" height="94" alt="" />
-						</a>
-					</td>
-					<td rowspan="6" style="width:11px;"></td>
-					<td colspan="9"></td>
-					<td style="height:9px; width:1px;"></td>
-				</tr>
-				<tr>
-					<td colspan="5" style="font-size: 20px; font-weight:bold;">
-						${name}
-					</td>
-					<td rowspan="5" style="width:20px;"></td>
-					<td rowspan="2">
-						<a href="https://www.linkedin.com/company/zuci-systems/" target="_blank">
-							<img src="./image/li.png" width="27" height="27" alt="" />
-						</a>
-					</td>
-					<td rowspan="2">
-						<a href="https://www.youtube.com/channel/UCXhhtzH9VZ8FCkpLPykH81A" target="_blank">
-							<img src="./image/you.png" width="28" height="28" alt="" />
-						</a>
-					</td>
-					<td rowspan="5" style="width:20px;"></td>
-					<td style="width:1px;"></td>
-				</tr>
-				<tr>
-					<td colspan="5" rowspan="2">
-						${designation} | ${department}
-					</td>
-					<td style="height:7px; width:1px;"></td>
-				</tr>
-				<tr>
-					<td colspan="2" rowspan="3" style="width:55px"></td>
-					<td style="width:1px;"></td>
-				</tr>
-				<tr>
-					<td class="stack-mobile" style="padding-right:5px; height:40px;display: flex;align-items: center;">
-						<img src="./image/email.png" width="20" height="16" alt="" />
-						<a href="mailto:${email}" style="text-decoration: none; color:black; margin-left: 5px;">${email}</a>
-					</td>
 
-					<td class="hide-mobile" style="width:10px;">&nbsp;</td> <!-- Spacer: Hidden on Mobile -->
+  <tr>
+    <td>
+      <a href="https://www.zucisystems.com/" target="_blank"> <img src="./image/logo.png" width="96px" height="52px"/> </a>
+    </td>
 
-					<td class="stack-mobile" style="padding-right:5px; height:40px;display: flex;align-items: center;">
-						<img src="./image/phone.png" width="20" height="21" alt="" />
-						<a href="tel:${mobile}" style="text-decoration: none; color:black; margin-left: 5px;">${mobile}</a>
-					</td>
+    <td>
 
-					<td style="height:21px; width:1px;"></td> <!-- Not mandatory, can keep for large screen structure -->
-				</tr>
-				<tr>
-					<td colspan="6" style="width:348px;"></td>
-				</tr>
-				<tr>
-					<td style="background-color: #ffb725;"></td>
-					<td colspan="10" style="background-color: #0080c4; padding-left:12px; color:white; font-size:14px; font-weight:bold;">
-						Seivana Thirundhach Sei
-					</td>
-					<td style="height:32px; width:1px;"></td>
-				</tr>
-			</table>
+    </td>
+
+    <td style="width:72px;"> 
+        <span>
+          <a href="https://www.linkedin.com/company/zuci-systems/" target="_blank"> <img src="./image/linkedin.png" width="24px" height="24px"/> 
+          </a> 
+          <a href="https://www.youtube.com/@zucisystems1651" target="_blank"> <img src="./image/youtube.png" width="24px" height="24px"/> 
+          </a> 
+        </span>
+    </td>
+    </tr>
+
+    <tr>
+      <td colspan="3" style="padding-left:15px">
+          <span style="font-size:16px; line-height: 22px;"><b>${name}</b></span></br>
+          <span style="font-size:14px; line-height: 20px;"> ${designation} | ${department}</br>
+          <img src="./image/mail.png" width="14px" height="10px" /> <a href="mailto:${email}" style="padding-left:5px;  text-decoration: none;  color:#000;">${email}</br>
+          <img src="./image/mobile.png" width="14px" height="12px"/> <a href="tel:${mobile}" style="padding-left:5px;  text-decoration: none; color:#000;"> ${mobile} </a></br></span>
+      </td>
+    </tr>
+
+
+<tr>
+
+<td style=" width: 128px; height: 28px; left: 0px; bottom: 0px;
+background-color:#FFA121;"
+></td>
+
+<td  colspan="2"  style="font-size: 12px; color: #FFFFFF; width:240px; height: 28px; background: #0080C4; padding-left:15px"><b>Seivana Thirundhach Sei</b></td>
+
+
+
+</tr>
+
+</table>
       `;
 
-			document.getElementById("signaturePreview").innerHTML = signatureHTML;
+      document.getElementById("signaturePreview").innerHTML = signatureHTML;
+    }
 
-			document.getElementById("wrapper").classList.add("generated");
-		}
-	</script>
+    function copySignature() {
+      const html = document.getElementById("signaturePreview").innerHTML;
+      // Create temporary element to hold HTML
+      const temp = document.createElement("textarea");
+      temp.value = html;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand("copy");
+      document.body.removeChild(temp);
+      alert("Signature HTML copied to clipboard!");
+    }
+  </script>
+
 </body>
-
 </html>
