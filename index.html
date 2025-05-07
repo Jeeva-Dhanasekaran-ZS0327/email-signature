@@ -53,7 +53,7 @@
       const mobile = document.getElementById("mobile").value;
 
       const signatureHTML = `
-	<table cellpadding="0" cellspacing="0"  class="signature-preview" id="signaturePreview"  max-width="480px" min-width:375px; height="126px" style="font-family: 'Geist', arial; border:1px solid #fafafa; background-color:#ffffff;">
+	<table cellpadding="0" cellspacing="0"  class="signature-preview" id="signaturePreview"  max-width="480px" min-width:375px; height="126px" style="font-family: 'Geist', arial; border:1px solid #fafafa; background-color:#ffffff;box-shadow: 0 4px 10px 0 rgba(0,0,0,0.1),0 0.1px 0px 0 rgba(0,0,0,0.19);">
 
 
   <tr>
@@ -75,14 +75,31 @@
     </td>
     </tr>
 
-    <tr>
-      <td colspan="3" style="padding-left:15px">
-          <span style="font-size:16px; line-height: 22px;"><b>${name}</b></span></br>
-          <span style="font-size:14px; line-height: 20px;"> ${designation} | ${department}</br>
-          <img src="https://res.cloudinary.com/don9trglx/image/upload/v1746540615/emailid.png" width="14" height="10" /> <a href="mailto:${email}" style="padding-left:5px;  text-decoration: none;  color:#000;">${email}</br>
-          <img src="https://res.cloudinary.com/don9trglx/image/upload/v1746540615/phone.png" width="14" height="12"/> <a href="tel:${mobile}" style="padding-left:5px;  text-decoration: none; color:#000;"> ${mobile} </a></br></span>
-      </td>
-    </tr>
+ <tr>
+  <td colspan="3" style="padding-left:15px; font-family: Arial, sans-serif;">
+    <table cellpadding="0" cellspacing="0" style="font-size:14px; line-height:20px;">
+      <tr>
+        <td style="padding-bottom:4px; font-size:16px; line-height:22px;"><b>${name}</b></td>
+      </tr>
+      <tr>
+        <td style="padding-bottom:4px;">${designation} | ${department}</td>
+      </tr>
+      <tr>
+        <td style="padding-bottom:4px;">
+          <img src="https://res.cloudinary.com/don9trglx/image/upload/v1746540615/emailid.png" width="14" height="10" style="vertical-align: middle;" />
+          <a href="mailto:${email}" style="padding-left:5px; text-decoration: none; color:#000;">${email}</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding-bottom:4px;">
+          <img src="https://res.cloudinary.com/don9trglx/image/upload/v1746540615/phone.png" width="14" height="12" style="vertical-align: middle;" />
+          <a href="tel:${mobile}" style="padding-left:5px; text-decoration: none; color:#000;">${mobile}</a>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+
 
 
 <tr>
