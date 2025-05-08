@@ -1,64 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Zuci System Email Generator</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background-color: #ffffff;
-    }
-    input {
-      display: block;
-      margin-bottom: 10px;
-      padding: 8px;
-      width: 300px;
-    }
-    button {
-      padding: 10px 15px;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-    .signature-container {
-      margin-top: 30px;
-    }
-    .signature-previewreview {border:1px solid #fafafa;}
-    
-  </style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Zuci System Email Generator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #ffffff;
+      }
+      input {
+        display: block;
+        margin-bottom: 10px;
+        padding: 8px;
+        width: 300px;
+      }
+      button {
+        padding: 10px 15px;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+      .signature-container {
+        margin-top: 30px;
+      }
+      .signature-previewreview {
+        border: 1px solid #fafafa;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Email Signature Generator</h2>
 
-  <h2>Email Signature Generator</h2>
+    <input type="text" id="name" placeholder="Name" />
+    <input type="email" id="email" placeholder="Email" />
+    <input type="text" id="designation" placeholder="Designation" />
+    <input type="text" id="department" placeholder="Department" />
+    <input type="tel" id="mobile" placeholder="Mobile Number" />
 
-  <input type="text" id="name" placeholder="Name">
-  <input type="email" id="email" placeholder="Email">
-  <input type="text" id="designation" placeholder="Designation">
-  <input type="text" id="department" placeholder="Department">
-  <input type="tel" id="mobile" placeholder="Mobile Number">
-  
-  <button onclick="generateSignature()">Generate Signature</button>
-  <!-- <button onclick="copySignature()">Copy HTML</button> -->
+    <button onclick="generateSignature()">Generate Signature</button>
+    <!-- <button onclick="copySignature()">Copy HTML</button> -->
 
-  <div class="signature-container">
-    <div id="signaturePreview" class="signature-preview"></div>
-  </div>
+    <div class="signature-container">
+      <div id="signaturePreview" class="signature-preview"></div>
+    </div>
 
-  <script>
-    function generateSignature() {
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const designation = document.getElementById("designation").value;
-      const department = document.getElementById("department").value;
-      const mobile = document.getElementById("mobile").value;
+    <script>
+      function generateSignature() {
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const designation = document.getElementById("designation").value;
+        const department = document.getElementById("department").value;
+        const mobile = document.getElementById("mobile").value;
 
-      const signatureHTML = `
+        const signatureHTML = `
 	<table cellpadding="0" cellspacing="0"  class="signature-preview" id="signaturePreview"  max-width="480px" min-width:375px; height="126px" style="font-family: 'Geist', arial; border:1px solid #fafafa; background-color:#f6f6f6;">
 
 
   <tr>
     <td>
-      <a href="https://www.zucisystems.com/" target="_blank"> <img src="https://res.cloudinary.com/dplehenjw/image/upload/v1746685088/logo4_2x_xrng7h.png" width="118" height="58"/> </a>
+      <a href="https://www.zucisystems.com/" target="_blank"> <img src="https://res.cloudinary.com/dplehenjw/image/upload/v1746685088/logo4_2x_xrng7h.png" width="116" height="58"/> </a>
     </td>
 
     <td>
@@ -123,21 +123,20 @@ background-color:#00527D;"
 </table>
       `;
 
-      document.getElementById("signaturePreview").innerHTML = signatureHTML;
-    }
+        document.getElementById("signaturePreview").innerHTML = signatureHTML;
+      }
 
-    function copySignature() {
-      const html = document.getElementById("signaturePreview").innerHTML;
-      // Create temporary element to hold HTML
-      const temp = document.createElement("textarea");
-      temp.value = html;
-      document.body.appendChild(temp);
-      temp.select();
-      document.execCommand("copy");
-      document.body.removeChild(temp);
-      alert("Signature HTML copied to clipboard!");
-    }
-  </script>
-
-</body>
+      function copySignature() {
+        const html = document.getElementById("signaturePreview").innerHTML;
+        // Create temporary element to hold HTML
+        const temp = document.createElement("textarea");
+        temp.value = html;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand("copy");
+        document.body.removeChild(temp);
+        alert("Signature HTML copied to clipboard!");
+      }
+    </script>
+  </body>
 </html>
