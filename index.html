@@ -4,44 +4,149 @@
     <meta charset="UTF-8" />
     <title>Zuci System Email Generator</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        padding: 20px;
-        background-color: #ffffff;
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
+      .generator-title {
+        padding-bottom: 20px;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 20px;
+        background-color: #f9fafb;
+        height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 1400px;
+        height: auto;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.5s ease;
+      }
+
+      .input-wrapper {
+        width: 100%;
+        max-width: 400px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.5s ease;
+      }
+
+      .signature-wrapper {
+        display: none;
+        width: 100%;
+        padding: 20px;
+        margin-top: 30px;
+        transition: all 0.5s ease;
+      }
+
+      .generated {
+        flex-direction: row;
+      }
+
+      .generated .input-wrapper {
+        width: 40%;
+        max-width: none;
+        height: 100%;
+        align-items: flex-start;
+        justify-content: flex-start;
+        border-right: 1px solid #ddd;
+      }
+
+      .generated .signature-wrapper {
+        display: flex;
+        width: 60%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0;
+      }
+
       input {
         display: block;
-        margin-bottom: 10px;
-        padding: 8px;
-        width: 300px;
+        margin-bottom: 15px;
+        padding: 12px 15px;
+        width: 100%;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        outline: none;
+        background: #fff;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
       }
+
+      input:focus {
+        border-color: #0077ff;
+        box-shadow: 0 0 0 4px rgba(0, 119, 255, 0.1);
+      }
+
       button {
-        padding: 10px 15px;
-        font-weight: bold;
-        margin-top: 10px;
+        padding: 12px 20px;
+        font-size: 16px;
+        font-weight: 600;
+        color: white;
+        background-color: #0077ff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+        margin-top: 15px;
+        width: 100%;
       }
-      .signature-container {
-        margin-top: 30px;
+
+      button:hover {
+        background-color: #005dc1;
+        transform: translateY(-2px);
       }
-      .signature-previewreview {
-        border: 1px solid #fafafa;
+
+      @media screen and (max-width: 768px) {
+        .generated {
+          flex-direction: column;
+        }
+
+        .generated .input-wrapper,
+        .generated .signature-wrapper {
+          width: 100%;
+          border: none;
+          height: auto;
+        }
+
+        .generated .signature-wrapper {
+          margin-top: 30px;
+        }
       }
     </style>
   </head>
   <body>
-    <h2>Email Signature Generator</h2>
+    <div class="wrapper" id="wrapper">
+      <div class="input-wrapper">
+        <h2 class="generator-title">Email Signature Generator</h2>
+        <input type="text" id="name" placeholder="Name" />
+        <input type="email" id="email" placeholder="Email" />
+        <input type="text" id="designation" placeholder="Designation" />
+        <input type="text" id="department" placeholder="Department" />
+        <input type="tel" id="mobile" placeholder="Mobile Number" />
+        <button onclick="generateSignature()">Generate Signature</button>
+      </div>
 
-    <input type="text" id="name" placeholder="Name" />
-    <input type="email" id="email" placeholder="Email" />
-    <input type="text" id="designation" placeholder="Designation" />
-    <input type="text" id="department" placeholder="Department" />
-    <input type="tel" id="mobile" placeholder="Mobile Number" />
-
-    <button onclick="generateSignature()">Generate Signature</button>
-    <!-- <button onclick="copySignature()">Copy HTML</button> -->
-
-    <div class="signature-container">
-      <div id="signaturePreview" class="signature-preview"></div>
+      <div class="signature-wrapper">
+        <div class="signature-container">
+          <div id="signaturePreview" class="signature-preview"></div>
+        </div>
+      </div>
     </div>
 
     <script>
@@ -53,7 +158,7 @@
         const mobile = document.getElementById("mobile").value;
 
         const signatureHTML = `
-	<table cellpadding="0" cellspacing="0"  class="signature-preview" id="signaturePreview"  max-width="480px" min-width:375px; height="126px" style="font-family: 'Geist', arial; border:1px solid #fafafa; background-color:#f6f6f6;">
+         	<table cellpadding="0" cellspacing="0"  class="signature-preview" id="signaturePreview"  max-width="480px" min-width:375px; height="126px" style="font-family: 'Geist', arial; border:1px solid #fafafa; background-color:#f6f6f6;">
 
 
   <tr>
@@ -121,21 +226,10 @@ background-color:#00527D;"
 </tr>
 
 </table>
-      `;
+        `;
 
         document.getElementById("signaturePreview").innerHTML = signatureHTML;
-      }
-
-      function copySignature() {
-        const html = document.getElementById("signaturePreview").innerHTML;
-        // Create temporary element to hold HTML
-        const temp = document.createElement("textarea");
-        temp.value = html;
-        document.body.appendChild(temp);
-        temp.select();
-        document.execCommand("copy");
-        document.body.removeChild(temp);
-        alert("Signature HTML copied to clipboard!");
+        document.getElementById("wrapper").classList.add("generated");
       }
     </script>
   </body>
