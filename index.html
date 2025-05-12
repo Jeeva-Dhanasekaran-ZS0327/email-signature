@@ -111,6 +111,17 @@
         background-color: #005dc1;
         transform: translateY(-2px);
       }
+      .copy-btn {
+        margin-top: 10px;
+        background-color: #28a745;
+      }
+
+      .copy-btn:hover {
+        background-color: #218838;
+      }
+      .hidden {
+        display: none;
+      }
 
       @media screen and (max-width: 768px) {
         .generated {
@@ -140,6 +151,9 @@
         <input type="text" id="department" placeholder="Department" />
         <input type="tel" id="mobile" placeholder="Mobile Number" />
         <button onclick="generateSignature()">Generate Signature</button>
+        <button class="copy-btn hidden" onclick="copySignature()" id="copyBtn">
+          Copy Signature
+        </button>
       </div>
 
       <div class="signature-wrapper">
@@ -158,78 +172,107 @@
         const mobile = document.getElementById("mobile").value;
 
         const signatureHTML = `
-         	<table cellpadding="0" cellspacing="0"  class="signature-preview" id="signaturePreview"  max-width="480px" min-width:375px; height="126px" style="font-family: 'Geist', arial; border:1px solid #fafafa; background-color:#f6f6f6;">
+               	<table cellpadding="0" cellspacing="0"  class="signature-preview" id="signaturePreview"  max-width="480px" min-width:375px; height="126px" style="font-family: 'Geist', arial; border:1px solid #fafafa; background-color:#f6f6f6;">
 
 
-  <tr>
-    <td>
-      <a href="https://www.zucisystems.com/" target="_blank"> <img src="https://res.cloudinary.com/dplehenjw/image/upload/v1746685088/logo4_2x_xrng7h.png" width="118" height="56"/> </a>
-    </td>
+        <tr>
+          <td>
+            <a href="https://www.zucisystems.com/" target="_blank"> <img src="https://res.cloudinary.com/dplehenjw/image/upload/v1746685088/logo4_2x_xrng7h.png" width="118" height="56"/> </a>
+          </td>
 
-    <td>
+          <td>
 
-    </td>
+          </td>
 
-<td style="width:72px;">
-  <a href="https://www.linkedin.com/company/zuci-systems/" target="_blank" style="text-decoration: none;">
-    <span style="text-decoration: none; color: #000000;">
-      <img src="https://res.cloudinary.com/don9trglx/image/upload/v1746540015/linkedin.png" width="24" height="24" style="border: 0; display: inline-block;" />
-    </span>
-  </a>
-  <a href="https://www.youtube.com/@zucisystems1651" target="_blank" style="text-decoration: none;">
-    <span style="text-decoration: none; color: #000000;">
-      <img src="https://res.cloudinary.com/don9trglx/image/upload/v1746540015/youtube.png" width="24" height="24" style="border: 0; display: inline-block;" />
-    </span>
-  </a>
-</td>
+      <td style="width:72px;">
+        <a href="https://www.linkedin.com/company/zuci-systems/" target="_blank" style="text-decoration: none;">
+          <span style="text-decoration: none; color: #000000;">
+            <img src="https://res.cloudinary.com/don9trglx/image/upload/v1746540015/linkedin.png" width="24" height="24" style="border: 0; display: inline-block;" />
+          </span>
+        </a>
+        <a href="https://www.youtube.com/@zucisystems1651" target="_blank" style="text-decoration: none;">
+          <span style="text-decoration: none; color: #000000;">
+            <img src="https://res.cloudinary.com/don9trglx/image/upload/v1746540015/youtube.png" width="24" height="24" style="border: 0; display: inline-block;" />
+          </span>
+        </a>
+      </td>
 
 
-    </tr>
+          </tr>
 
- <tr>
-  <td colspan="3" style="padding-left:15px; font-family: Arial, sans-serif;">
-    <table cellpadding="0" cellspacing="0" style="font-size:14px; line-height:20px;">
-      <tr>
-        <td style="padding-bottom:2px; font-size:16px; line-height:22px;"><b>${name}</b></td>
-      </tr>
-      <tr>
-        <td style="padding-bottom:4px;">${designation} | ${department}</td>
-      </tr>
-      <tr>
-        <td style="padding-bottom:4px;">
-          <img src="https://res.cloudinary.com/don9trglx/image/upload/v1746540615/emailid.png" width="14" height="10" style="vertical-align: middle; text-decoration: none;" />
-          <a href="mailto:${email}" style="padding-left:5px; text-decoration: none; color:#000;">${email}</a>
+       <tr>
+        <td colspan="3" style="padding-left:15px; font-family: Arial, sans-serif;">
+          <table cellpadding="0" cellspacing="0" style="font-size:14px; line-height:20px;">
+            <tr>
+              <td style="padding-bottom:2px; font-size:16px; line-height:22px;"><b>${name}</b></td>
+            </tr>
+            <tr>
+              <td style="padding-bottom:4px;">${designation} | ${department}</td>
+            </tr>
+            <tr>
+              <td style="padding-bottom:4px;">
+                <img src="https://res.cloudinary.com/don9trglx/image/upload/v1746540615/emailid.png" width="14" height="10" style="vertical-align: middle; text-decoration: none;" />
+                <a href="mailto:${email}" style="padding-left:5px; text-decoration: none; color:#000;">${email}</a>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-bottom:4px;">
+                <img src="https://res.cloudinary.com/don9trglx/image/upload/v1746540615/phone.png" width="14" height="12" style="vertical-align: middle;text-decoration: none;" />
+                <a href="tel:${mobile}" style="padding-left:5px; text-decoration: none; color:#000;">${mobile}</a>
+              </td>
+            </tr>
+          </table>
         </td>
       </tr>
+
+
+
       <tr>
-        <td style="padding-bottom:4px;">
-          <img src="https://res.cloudinary.com/don9trglx/image/upload/v1746540615/phone.png" width="14" height="12" style="vertical-align: middle;text-decoration: none;" />
-          <a href="tel:${mobile}" style="padding-left:5px; text-decoration: none; color:#000;">${mobile}</a>
-        </td>
+
+      <td style=" width: 128px; height: 28px; left: 0px; bottom: 0px;
+      background-color:#00527D;"
+      ></td>
+
+      <td  colspan="2"  style="font-size: 12px; color: #FFFFFF; width:240px; height: 28px; background: #0080C4; padding-left:15px"><b>Seivana Thirundhach Sei</b></td>
+
+
+
       </tr>
-    </table>
-  </td>
-</tr>
 
-
-
-<tr>
-
-<td style=" width: 128px; height: 28px; left: 0px; bottom: 0px;
-background-color:#00527D;"
-></td>
-
-<td  colspan="2"  style="font-size: 12px; color: #FFFFFF; width:240px; height: 28px; background: #0080C4; padding-left:15px"><b>Seivana Thirundhach Sei</b></td>
-
-
-
-</tr>
-
-</table>
-        `;
+      </table>
+              `;
 
         document.getElementById("signaturePreview").innerHTML = signatureHTML;
         document.getElementById("wrapper").classList.add("generated");
+        document.getElementById("copyBtn").classList.remove("hidden");
+      }
+      function copySignature() {
+        const signature = document.getElementById("signaturePreview");
+        if (!signature.innerHTML.trim()) {
+          alert("Please generate the signature first.");
+          return;
+        }
+
+        const tempDiv = document.createElement("div");
+        tempDiv.style.position = "fixed";
+        tempDiv.style.left = "-9999px";
+        tempDiv.innerHTML = signature.innerHTML;
+        document.body.appendChild(tempDiv);
+
+        const range = document.createRange();
+        range.selectNode(tempDiv);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+
+        try {
+          document.execCommand("copy");
+          alert("Signature copied to clipboard!");
+        } catch (err) {
+          alert("Failed to copy. Please try manually.");
+        }
+
+        document.body.removeChild(tempDiv);
       }
     </script>
   </body>
